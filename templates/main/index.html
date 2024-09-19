@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Welcome to Starpath{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Starpath</h1>
+    <p>Embark on your interstellar journey and build your empire!</p>
+
+    {% if not current_user.is_authenticated %}
+    <p><a href="/auth/login">Login</a> or <a href="/auth/register">Register</a> to begin your adventure.</p>
+    {% else %}
+        <p>Welcome back, {{ current_user.username }}! <a href="{{ url_for('game.empire') }}">Go to your Empire</a></p>
+    {% endif %}
+    
+    <section>
+        <h2>About the Game</h2>
+        <p>Starpath is a browser-based 4X strategy game where you manage your empire, conquer planets, and engage in diplomacy or warfare...</p>
+        <!-- You can add more descriptive content here -->
+    </section>
+{% endblock %}

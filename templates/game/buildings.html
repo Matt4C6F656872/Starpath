@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h2>Manage Buildings on {{ planet.name }}</h2>
+
+<h3>Current Buildings:</h3>
+<ul>
+    {% for building in buildings %}
+    <li>
+        {{ BUILDINGS[building.building_type_id]['name'] }} - Level {{ building.level }}
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Upgrade a Building:</h3>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.building.label }}<br>
+        {{ form.building() }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+<a href="{{ url_for('main.game') }}">Back to Game</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h2>Welcome, {{ current_user.username }}!</h2>
+<p>Your Race: {{ current_user.race['name'] }}</p>
+<p>Your Faction: {{ current_user.faction['name'] }}</p>
+
+<h3>Your Planets:</h3>
+<ul>
+    {% for planet in planets %}
+    <li>
+        {{ planet.name }} - {{ planet.planet_type['name'] }}
+        <ul>
+            <li>Aluminium: {{ planet.aluminium }}</li>
+            <li>Biomass: {{ planet.biomass }}</li>
+            <li>Crystals: {{ planet.crystals }}</li>
+            <!-- Add other resources -->
+        </ul>
+        <a href="{{ url_for('game.manage_buildings', planet_id=planet.id) }}">Manage Buildings</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
